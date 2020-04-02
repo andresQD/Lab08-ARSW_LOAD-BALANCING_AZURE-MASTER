@@ -86,17 +86,83 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+   
+      Azure crea 6 recursos junto con la VM
+      1. **Virtual Network**
+      2. **Storage Account**
+      3. **Public IP Address**
+      4. **Network Security Group**
+      5. **Network Interface**
+      6. **Disk**
+      
 2. ¿Brevemente describa para qué sirve cada recurso?
+   
+
+   1. **Virtual Network**: Permite que muchos tipos de recursos de Azure, como las Máquinas Virtuales Azure (VM), se comuniquen de forma segura entre sí,con el Internet y con redes locales on-premise.
+   2. **Storage Account**: Contiene todos los objetos de datos de Azure Storage: bloques, archivos, colas, tablas y discos.
+   3. **Public IP Address**: Direcciones IP públicas para los recursos de Azure para comunicarse con otros recursos, con el Internet y con redes locales on-premise.
+   4. **Network Security Group**: Para filtrar el tráfico de red hacia y desde los recursos Azure en una red virtual Azure con un grupo de seguridad de red.
+   5. **Network Interface**: Una interfaz de red permite que una máquina virtual Azure se comunique con el Internet y con recursos locales.
+   6. **Disk**: Almacenamiento de la máquina virtual Azure.
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+
+* Al acceder a la máquina virtual mediante SSH, se inicia un proceso para este servicio y todos los comandos realizados por SSH se ejecutarán como hijos de dicho proceso, es por eso por lo que al salir de la sesión SSH, este proceso termina y por ende también acaba los procesos hijos.
+
+Se debe crear un “Inbound port rule” para permitir el tráfico de la red a un número de puerto específico TCP o UDP perteneciente a la máquina virtual, en este caso el puerto 3000.
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
+
+      Tiempo -- Disco `A0`
+    |    N     | Fibonacci(N)|
+    |:--------:|:-----------:|
+    |1000000   |    163.31s  |
+    |1010000   |    166.71s  |
+    |1020000   |    145.56s  |
+    |1030000   |    151.14s  |
+    |1040000   |    152.83s  |
+    |1050000   |    159.29s  |
+    |1060000   |    158.13s  |
+    |1070000   |    158.06s  |
+    |1080000   |    162.49s  |
+    |1090000   |    162.80s  |
+    
+      Tiempo -- Disco `A6`
+    |    N     | Fibonacci(N)|
+    |:--------:|:-----------:|
+    |1000000   |    70.63s   |
+    |1010000   |    71.52s   |
+    |1020000   |    72.62s   |
+    |1030000   |    74.91s   |
+    |1040000   |    75.12s   |
+    |1050000   |    79.40s   |
+    |1060000   |    79.39s   |
+    |1070000   |    79.70s   |
+    |1080000   |    82.37s   |
+    |1090000   |    82.78s   |
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+AO
+![CPUA0](https://user-images.githubusercontent.com/48091585/78277007-6fc30b00-74d9-11ea-82e6-c0c21db9c95e.png)
+
+A6
+![CPUA6](https://user-images.githubusercontent.com/48091585/78276913-51f5a600-74d9-11ea-8d20-146afa102bd4.png)
+
+Fibonacci es un algoritmo que es exhaustivo para el procesador, al implementar la función sin ningún tipo memorización o cache y sobre un procesador de bajas especificaciones, el consumo de este se vuelve evidente, como se muestra en las imagenes anteriores.
+
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
+    ![postman environment](https://user-images.githubusercontent.com/48091585/78277755-9e8db100-74da-11ea-9337-245bffe8449b.png)
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+El disco B1ls esta solamente disponible en Linux y es más económico que el disco B2ms.
+    |Name | vCPU | Memory (GiB) | Temp Storage (SSD) GiB | Base CPU Perf of VM | Max CPU Perf of VM | Max NICs|
+    |:---:|:----:|:------------:|:----------------------:|:-------------------:|:------------------:|:-------:|
+    |B1ls |  1   |     0.5      |            4           |          5%         |         100%       |    2    |
+    |B2ms |  2   |     8        |            16          |          60%        |         200%       |    3    |
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+Para este escenario puede ser una buena solución si se desea aumentar la cantidad de peticiones que se pueden realizar concurrentemente al servidor, sin embargo, si se desea aumentar el tiempo de respuesta, se debe buscar una mejor manera de implementar la aplicación FibonacciApp.js.
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+Cuando se cambia el tamaño de la máquina virtual implica que esta se tenga que reiniciar, por lo que la aplicación se detiene y la disponibilidad disminuye. Al iniciar la máquina se debe volver a empezar el servicio de FibonacciApp. 
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
+ubo mejora en el consumo de CPU, en los tiempos prácticamente se mantuvo igual con ambos discos. La mejora se debe a que el disco tiene mayor capacidad de procesamiento, una vCPU más,  que permite que las conexiones no se cierren y la aplicación soporte más cálculos.
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
 
 ### Parte 2 - Escalabilidad horizontal
