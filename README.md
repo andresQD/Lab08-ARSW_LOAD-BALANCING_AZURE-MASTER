@@ -152,20 +152,26 @@ Fibonacci es un algoritmo que es exhaustivo para el procesador, al implementar l
     * Si hubo fallos documentelos y explique.
     ![postman environment](https://user-images.githubusercontent.com/48091585/78277755-9e8db100-74da-11ea-9337-245bffe8449b.png)
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+
 El disco B1ls esta solamente disponible en Linux y es más económico que el disco B2ms.
+
     |Name | vCPU | Memory (GiB) | Temp Storage (SSD) GiB | Base CPU Perf of VM | Max CPU Perf of VM | Max NICs|
     |:---:|:----:|:------------:|:----------------------:|:-------------------:|:------------------:|:-------:|
     |B1ls |  1   |     0.5      |            4           |          5%         |         100%       |    2    |
     |B2ms |  2   |     8        |            16          |          60%        |         200%       |    3    |
+    
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
 
-Para este escenario puede ser una buena solución si se desea aumentar la cantidad de peticiones que se pueden realizar concurrentemente al servidor, sin embargo, si se desea aumentar el tiempo de respuesta, se debe buscar una mejor manera de implementar la aplicación FibonacciApp.js.
+   Para este escenario puede ser una buena solución si se desea aumentar la cantidad de peticiones que se pueden realizar concurrentemente al servidor, sin embargo, si se desea aumentar el tiempo de respuesta, se debe buscar una mejor manera de implementar la aplicación FibonacciApp.js.
+   
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
 
-Cuando se cambia el tamaño de la máquina virtual implica que esta se tenga que reiniciar, por lo que la aplicación se detiene y la disponibilidad disminuye. Al iniciar la máquina se debe volver a empezar el servicio de FibonacciApp. 
+   Cuando se cambia el tamaño de la máquina virtual implica que esta se tenga que reiniciar, por lo que la aplicación se detiene y la disponibilidad disminuye. Al iniciar la máquina se debe volver a empezar el servicio de FibonacciApp. 
+   
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
 
-Hubo mejora en el consumo de CPU, en los tiempos prácticamente se mantuvo igual con ambos discos. La mejora se debe a que el disco tiene mayor capacidad de procesamiento, una vCPU más,  que permite que las conexiones no se cierren y la aplicación soporte más cálculos.
+   Hubo mejora en el consumo de CPU, en los tiempos prácticamente se mantuvo igual con ambos discos. La mejora se debe a que el disco tiene mayor capacidad de procesamiento, una vCPU más,  que permite que las conexiones no se cierren y la aplicación soporte más cálculos.
+   
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
 
 ### Parte 2 - Escalabilidad horizontal
