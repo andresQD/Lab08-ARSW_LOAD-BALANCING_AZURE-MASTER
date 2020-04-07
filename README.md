@@ -174,6 +174,9 @@ El disco B1ls esta solamente disponible en Linux y es más económico que el dis
    
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
 
+![paralelo](https://user-images.githubusercontent.com/48091585/78624349-03386b00-784f-11ea-8ac7-2f165d7ed5fd.png)
+
+
 ### Parte 2 - Escalabilidad horizontal
 
 #### Crear el Balanceador de Carga
