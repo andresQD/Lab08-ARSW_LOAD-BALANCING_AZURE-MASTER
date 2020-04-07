@@ -176,6 +176,9 @@ El disco B1ls esta solamente disponible en Linux y es más económico que el dis
 
 ![paralelo](https://user-images.githubusercontent.com/48091585/78624349-03386b00-784f-11ea-8ac7-2f165d7ed5fd.png)
 
+![cpu paralelo](https://user-images.githubusercontent.com/48091585/78624548-835ed080-784f-11ea-8ae5-31e7a18a1937.png)
+
+
 
 ### Parte 2 - Escalabilidad horizontal
 
