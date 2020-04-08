@@ -316,6 +316,7 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
    * Su propósito es filtrar el tráfico de red hacia y desde los recursos Azure en una red virtual Azure con un grupo de seguridad de red. Continene reglas de seguridad que permiten o niegan el tráfico entrante a la red.
 
 * Pruebas de servicios basicos (Punto 1)
+
    ![prueba load balancer hola](https://user-images.githubusercontent.com/48091585/78839080-444e8d80-79bd-11ea-8543-0deb7f07cffa.png)
    ![prueba load balancer](https://user-images.githubusercontent.com/48091585/78839079-444e8d80-79bd-11ea-88f1-f28d683e9b30.png)
 
