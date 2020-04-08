@@ -315,7 +315,12 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 
    * Su propósito es filtrar el tráfico de red hacia y desde los recursos Azure en una red virtual Azure con un grupo de seguridad de red. Continene reglas de seguridad que permiten o niegan el tráfico entrante a la red.
 
+* Pruebas de servicios basicos (Punto 1)
+   ![prueba load balancer hola](https://user-images.githubusercontent.com/48091585/78839080-444e8d80-79bd-11ea-8543-0deb7f07cffa.png)
+   ![prueba load balancer](https://user-images.githubusercontent.com/48091585/78839079-444e8d80-79bd-11ea-88f1-f28d683e9b30.png)
+
 * Informe de newman 1 (Punto 2)
+   ![informe newman](https://user-images.githubusercontent.com/48091585/78839081-444e8d80-79bd-11ea-9d52-a93e812e8313.png)
 
     |Escalamiento|  SO  | Tipo |  Nivel | Name |vCPU|RAM (GiB)|Discos|Costo XMes|Tiempo promedio de respuesta|Peticiones Exitosas|
     |:----------:|:----:|:----:|:------:|:----:|:--:|:-------:|:----:|:--------:|:--------------------------:|:-----------------:|
@@ -325,10 +330,20 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 
 * Informe de newman 1 (Punto 3)
 
+![vm1newman](https://user-images.githubusercontent.com/48091585/78839083-44e72400-79bd-11ea-9707-2e657b63213a.png)
+![vm2newman](https://user-images.githubusercontent.com/48091585/78839084-44e72400-79bd-11ea-9be4-45b774d6589f.png)
+![vm3newman](https://user-images.githubusercontent.com/48091585/78839086-44e72400-79bd-11ea-99a1-c6ceca1931ea.png)
+![vm4newman](https://user-images.githubusercontent.com/48091585/78839089-457fba80-79bd-11ea-8299-601df72a4450.png)
+![cpuvm1newman](https://user-images.githubusercontent.com/48091585/78839090-457fba80-79bd-11ea-8675-defaf7b4eae7.png)
+![cpuvm2newman](https://user-images.githubusercontent.com/48091585/78839091-457fba80-79bd-11ea-8b47-96d38c0d4b2b.png)
+![cpuvm3newman](https://user-images.githubusercontent.com/48091585/78839076-43b5f700-79bd-11ea-9a29-77a49c8ae356.png)
+![cpuvm4newman](https://user-images.githubusercontent.com/48091585/78839077-43b5f700-79bd-11ea-90f2-07a59e4a34af.png)
+
    * Con este estilo de escalabilidad, fallaron por proceso newman dos o tres peticiones. El éxito de estas peticiones es principalmente dado a que el balanceador de carga permite equilibrar las carga sobre las aplicaciones en las cuatro máquinas virtuales desplegadas, como se aprecia en las imágenes, dejando que estas calculen los resultados de las peticiones sin sobrecargarse.
 
 
 * Presente el Diagrama de Despliegue de la solución.
+![Diagrama de despliegue](https://user-images.githubusercontent.com/48091585/78839059-3567db00-79bd-11ea-9d94-0aca28f61024.png)
 
 
 
