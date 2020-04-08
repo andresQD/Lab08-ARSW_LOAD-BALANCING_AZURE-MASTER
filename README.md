@@ -316,6 +316,18 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
    * Su propósito es filtrar el tráfico de red hacia y desde los recursos Azure en una red virtual Azure con un grupo de seguridad de red. Continene reglas de seguridad que permiten o niegan el tráfico entrante a la red.
 
 * Informe de newman 1 (Punto 2)
+
+    |Escalamiento|  SO  | Tipo |  Nivel | Name |vCPU|RAM (GiB)|Discos|Costo XMes|Tiempo promedio de respuesta|Peticiones Exitosas|
+    |:----------:|:----:|:----:|:------:|:----:|:--:|:-------:|:----:|:--------:|:--------------------------:|:-----------------:|
+    |  Vertical  |Linux |Ubuntu|Estandar|  A6  | 4  |    28   |  8   | $321.20  |             1m7s           |         20        |
+    | Horizontal |Linux |Ubuntu|Estandar|F2s_v2| 2  |     4   |  4   |  $61.76  |             16.8s          |         19        |
+
+
+* Informe de newman 1 (Punto 3)
+
+   * Con este estilo de escalabilidad, fallaron por proceso newman dos o tres peticiones. El éxito de estas peticiones es principalmente dado a que el balanceador de carga permite equilibrar las carga sobre las aplicaciones en las cuatro máquinas virtuales desplegadas, como se aprecia en las imágenes, dejando que estas calculen los resultados de las peticiones sin sobrecargarse.
+
+
 * Presente el Diagrama de Despliegue de la solución.
 
 
